@@ -1,5 +1,6 @@
 package com.example.dream.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,7 +16,8 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class Timestamp implements Serializable {
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", columnDefinition = "varchar(255) default ''", updatable = false)
     private Date createdAt;
 
     @LastModifiedDate
