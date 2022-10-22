@@ -2,8 +2,8 @@ POST http://localhost:8080/api/member/signup
 Content-Type: application/json
 
 {
-  "username": "adamSecond",
-  "nickname": "adam",
+  "username": "testing",
+  "nickname": "adam2",
   "password": "bin1234"
 }
 
