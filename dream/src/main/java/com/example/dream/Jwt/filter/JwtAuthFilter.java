@@ -24,6 +24,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String accessToken = jwtUtil.getHeaderToken(request, "Access");
         String refreshToken = jwtUtil.getHeaderToken(request, "Refresh");
 
+
+        System.out.println("line 28 auth filter +" +request);
         if (accessToken != null) {
             if (!jwtUtil.tokenValidation(accessToken)) {
                 System.out.println("JwtAuthFilter.doFilterInternal");
@@ -42,6 +44,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
     public void setAuthentication(String username){
         Authentication authentication = jwtUtil.createAuthentication(username);
+        System.out.println(authentication+" line 45 jwt Auth Filter");
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

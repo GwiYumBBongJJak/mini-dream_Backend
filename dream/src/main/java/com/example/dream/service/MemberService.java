@@ -32,15 +32,15 @@ public class MemberService {
     @Transactional
     public LoginResponseDto signup(MemberRequestDto requestDto) {
         //username duplication check
-        if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
-            throw new RuntimeException("duplication in username");
-        };
+//        if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
+//            throw new RuntimeException("duplication in username");
+//        };
 
         requestDto.setPasswordEncoder(passwordEncoder.encode(requestDto.getPassword()));
         Member member = new Member(requestDto);
 
         memberRepository.save(member);
-        return new LoginResponseDto("Sign up Success", HttpStatus.OK.value());
+        return new LoginResponseDto("회원가입에 성공하셨습니다!", HttpStatus.OK.value());
 
     }
 
@@ -50,7 +50,7 @@ public class MemberService {
                 () -> new RuntimeException("User not found")
         );
         if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
-            throw new RuntimeException("Password mismatch");
+            throw new RuntimeException("비밀번호가 일치 하지 않습니다");
         }
         TokenDto tokenDto = jwtUtil.createAllToken(loginDto.getUsername());
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByMemberUsername(loginDto.getUsername());
@@ -62,7 +62,7 @@ public class MemberService {
         }
         setHeader(response, tokenDto);
 
-        return new LoginResponseDto("Login Success", HttpStatus.OK.value());
+        return new LoginResponseDto("로그인 완료!", HttpStatus.OK.value());
     }
     private void setHeader(HttpServletResponse response, TokenDto tokenDto){
         response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());

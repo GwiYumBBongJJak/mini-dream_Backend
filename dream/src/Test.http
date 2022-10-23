@@ -1,9 +1,9 @@
-POST http://localhost:8080/api/member/signup
+POST http://localhost:8080/member/register
 Content-Type: application/json
 
 {
-  "username": "testing",
-  "nickname": "adam2",
+  "username": "testing3",
+  "nickname": "adam233",
   "password": "bin1234"
 }
 
@@ -19,24 +19,31 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/api/member/login
+POST http://localhost:8080/member/login
 Content-Type: application/json
 
 {
-  "username": "adamSecond",
+  "username": "testing3",
   "password": "bin1234"
 }
 
 ###
 
-POST http://localhost:8080/api/auth/boards/post
+POST http://localhost:8080/auth/board/create
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzMzOTA4LCJpYXQiOjE2NjYyNDc1MDh9.FR-ByQcUd7Eq7WDcdidXNtybCdxFXiZP_GU8743xqpU
+Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMyIsImV4cCI6MTY2NjU0MTc0OCwiaWF0IjoxNjY2NTM4MTQ4fQ.yLXitiLFdrXC2MS3DZOkuPcYBv6jKB_vc8XbU6PuQVM
 
 {
-  "content": "  fdsfsdfdsfsd ",
-  "title": "hihihidfdsmlworld"
+  "board_content": "fdsfsdfdsfsd",
+  "board_title": "hihihidfdsmlworld"
 }
+
+###
+
+GET http://localhost:8080/auth/board/1
+Content-Type: application/json
+
+
 
 ###
 GET http://localhost:8080/api/auth/boards/1

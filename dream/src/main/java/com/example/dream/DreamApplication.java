@@ -25,4 +25,3 @@ public class DreamApplication {
         };
     }
 }
-   // allowedOrigins("http://54.180.79.123:8080");

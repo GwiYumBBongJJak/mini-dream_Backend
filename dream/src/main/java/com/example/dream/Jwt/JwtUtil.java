@@ -94,6 +94,8 @@ public class JwtUtil {
     //make authentication object
     public Authentication createAuthentication(String username){
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        System.out.println(username);
+        System.out.println(userDetails);
         return new UsernamePasswordAuthenticationToken(userDetails,"",userDetails.getAuthorities());
     }
 

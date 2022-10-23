@@ -17,23 +17,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
     private final JwtUtil jwtUtil;
 
-    @PostMapping("/member/signup")
+    @PostMapping("/register")
     public LoginResponseDto signup(@RequestBody @Valid MemberRequestDto requestDto) {
         return memberService.signup(requestDto);
     }
-    @GetMapping("/member/id/check")
+    @GetMapping("/id/check")
     public ResponseEntity<?> idCheck(@RequestBody Member member){
         return memberService.idCheck(member.getUsername());
     }
 
-    @GetMapping("/member/nickname/check")
+    @GetMapping("/nickname/check")
     public ResponseEntity<?> nicknameCheck(@RequestBody Member member){
         return memberService.nicknameCheck(member.getNickname());
     }
@@ -43,7 +43,7 @@ public class MemberController {
         return memberService.signup(requestDto);
     }
 
-    @PostMapping("/member/login")
+    @PostMapping("/login")
     public LoginResponseDto login(@RequestBody @Valid LoginDto dto, HttpServletResponse response) {
         return memberService.login(dto, response);
     }
