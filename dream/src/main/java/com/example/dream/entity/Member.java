@@ -3,9 +3,11 @@ package com.example.dream.entity;
 import com.example.dream.dto.MemberRequestDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
