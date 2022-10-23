@@ -13,7 +13,7 @@ POST http://localhost:8080/api/member/login
 Content-Type: application/json
 
 {
-  "username": "adamSecond",
+  "username": "testing",
   "password": "bin1234"
 }
 
@@ -21,22 +21,42 @@ Content-Type: application/json
 
 POST http://localhost:8080/api/auth/boards/post
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzMzOTA4LCJpYXQiOjE2NjYyNDc1MDh9.FR-ByQcUd7Eq7WDcdidXNtybCdxFXiZP_GU8743xqpU
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
 
 {
-  "content": "  fdsfsdfdsfsd ",
-  "title": "hihihidfdsmlworld"
+  "content": "첫번째 포스트",
+  "title": "배고파"
 }
 
 ###
-GET http://localhost:8080/api/auth/boards/1
-Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzMzODA5LCJpYXQiOjE2NjYyNDc0MDl9.r1FmZqAZITCb0SdO12UHdWI8pqMdXumQZ_cu5jy6ryY
 
-###
 GET http://localhost:8080/api/auth/boards
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM2MTU0LCJpYXQiOjE2NjYyNDk3NTR9.bgc06N_bcsPFicwxCbgUBT-kG3TJYwfLh4eTZIVhWCQ
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+
+###
+
+GET http://localhost:8080/api/auth/boards/1
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+
+###
+
+PUT http://localhost:8080/api/auth/boards/4
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+
+{
+  "content": "수정내용22",
+  "title": "수정체크22"
+}
+
+###
+
+DELETE http://localhost:8080/api/auth/boards/3
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+
 
 ###
 

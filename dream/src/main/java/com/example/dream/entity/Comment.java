@@ -21,4 +21,8 @@ public class Comment extends Timestamp {
     @JoinColumn(name="member")
     private Member member;
 
+    @ManyToOne
+    @JoinColumn(name = "board")
+    private Board board;
+
 }
