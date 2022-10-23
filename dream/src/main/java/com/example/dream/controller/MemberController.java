@@ -4,10 +4,12 @@ import com.example.dream.Jwt.JwtUtil;
 import com.example.dream.dto.LoginDto;
 import com.example.dream.dto.LoginResponseDto;
 import com.example.dream.dto.MemberRequestDto;
+import com.example.dream.entity.Member;
 import com.example.dream.service.MemberService;
 import com.example.dream.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,20 @@ public class MemberController {
 
     @PostMapping("/member/signup")
     public LoginResponseDto signup(@RequestBody @Valid MemberRequestDto requestDto) {
+        return memberService.signup(requestDto);
+    }
+    @GetMapping("/member/id/check")
+    public ResponseEntity<?> idCheck(@RequestBody Member member){
+        return memberService.idCheck(member.getUsername());
+    }
+
+    @GetMapping("/member/nickname/check")
+    public ResponseEntity<?> nicknameCheck(@RequestBody Member member){
+        return memberService.nicknameCheck(member.getNickname());
+    }
+
+    @PostMapping("/dummy/create")
+    public LoginResponseDto dummyShow( @RequestBody @Valid MemberRequestDto requestDto) {
         return memberService.signup(requestDto);
     }
 

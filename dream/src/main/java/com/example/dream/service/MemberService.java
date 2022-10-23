@@ -12,6 +12,7 @@ import com.example.dream.repository.MemberRepository;
 import com.example.dream.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -67,4 +68,23 @@ public class MemberService {
         response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());
         response.addHeader(JwtUtil.REFRESH_TOKEN, tokenDto.getRefreshToken());
     }
+
+    public ResponseEntity<?> idCheck(String username) {
+
+        Optional<Member> member = memberRepository.findByUsername(username);
+        if(member.isPresent()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(username, HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> nicknameCheck(String nickname) {
+
+        Optional<Member> member = memberRepository.findByNickname(nickname);
+        if(member.isPresent()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(nickname, HttpStatus.OK);
+    }
+
 }

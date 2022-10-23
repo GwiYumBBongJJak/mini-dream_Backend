@@ -20,8 +20,9 @@ public class DreamApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-               registry.addMapping("/**").allowedOrigins("http://54.180.79.123:8080");
+               registry.addMapping("/**").allowedOrigins("http://localhost:3000");
             }
         };
     }
 }
+   // allowedOrigins("http://54.180.79.123:8080");
