@@ -1,10 +1,10 @@
-POST http://localhost:8080/api/member/signup
+POST http://localhost:8080/api/member/register
 Content-Type: application/json
 
 {
   "username": "testing",
   "nickname": "adam2",
-  "password": "bin1234"
+  "password": "bin12345"
 }
 
 ###
@@ -14,25 +14,29 @@ Content-Type: application/json
 
 {
   "username": "testing",
-  "password": "bin1234"
+  "password": "bin12345"
 }
 
 ###
 
 POST http://localhost:8080/api/auth/boards/post
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
 
 {
   "content": "첫번째 포스트",
   "title": "배고파"
 }
 
+
+
+
+
 ###
 
 GET http://localhost:8080/api/auth/boards
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
 
 ###
 
@@ -42,20 +46,26 @@ Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLC
 
 ###
 
-PUT http://localhost:8080/api/auth/boards/4
+PUT http://localhost:8080/api/auth/boards/6
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
 
 {
-  "content": "수정내용22",
-  "title": "수정체크22"
+  "content": "이것도 테스트용",
+  "title": "이건 테스트용"
 }
 
 ###
 
-DELETE http://localhost:8080/api/auth/boards/3
+GET http://localhost:8080/api/member/id/test22ing
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+
+
+###
+
+DELETE http://localhost:8080/api/auth/boards/4
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
 
 
 ###
@@ -116,3 +126,8 @@ Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjY0N
 POST http://localhost:8080/api/auth/heart/like/1
 Content-Type: application/json
 Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM0MjYxLCJpYXQiOjE2NjYyNDc4NjF9.OyIja8YgLcPfHSSR5w12APxL1pYMdVWOHUBiKYNU9Zo
+
+
+
+
+

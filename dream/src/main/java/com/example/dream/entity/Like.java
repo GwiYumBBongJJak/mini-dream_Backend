@@ -24,6 +24,10 @@ public class Like {
 //    private boolean horror;
 
 
+    public Like(Long board_id, Long member_id) {
+        this.board_id = board_id;
+        this.member_id = member_id;
+    }
 }
 
 
