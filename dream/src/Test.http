@@ -21,7 +21,7 @@ Content-Type: application/json
 
 POST http://localhost:8080/api/auth/boards/post
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0LCJpYXQiOjE2NjY2MzMwMzR9.h_GCxDzb30FNKqze3D_UQSrh7e7h2F8EUs7u4_Ulukw
 
 {
   "content": "첫번째 포스트",
@@ -36,19 +36,18 @@ Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLC
 
 GET http://localhost:8080/api/auth/boards
 Content-Type: application/json
-Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0LCJpYXQiOjE2NjY2MzMwMzR9.h_GCxDzb30FNKqze3D_UQSrh7e7h2F8EUs7u4_Ulukw
 
 ###
 
-GET http://localhost:8080/api/auth/boards/1
+GET http://localhost:8080/api/auth/boards/2
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
-
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM3MjM5LCJpYXQiOjE2NjY2MzM2Mzl9.6fRE7oIwaw3UDQPRI1ZUUNSp1XkeE2j6AIO4zhTf75g
 ###
 
-PUT http://localhost:8080/api/auth/boards/6
+PUT http://localhost:8080/api/auth/boards/1
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0LCJpYXQiOjE2NjY2MzMwMzR9.h_GCxDzb30FNKqze3D_UQSrh7e7h2F8EUs7u4_Ulukw
 
 {
   "content": "이것도 테스트용",
@@ -63,19 +62,18 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8080/api/auth/boards/4
+DELETE http://localhost:8080/api/auth/boards/
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
-
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM3MjM5LCJpYXQiOjE2NjY2MzM2Mzl9.6fRE7oIwaw3UDQPRI1ZUUNSp1XkeE2j6AIO4zhTf75g
 
 ###
 
-POST http://localhost:8080/api/auth/board/comment/1
+POST http://localhost:8080/auth/comments/1/create
 Content-Type: application/json
-Access_token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM2MTU0LCJpYXQiOjE2NjYyNDk3NTR9.bgc06N_bcsPFicwxCbgUBT-kG3TJYwfLh4eTZIVhWCQ
+AUthorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjQxNTk3LCJpYXQiOjE2NjY2Mzc5OTd9.Fmc-Wvv4P4BZwf7ke15KYpBj4PSY8RjeJ7gDOlulWt4
 
 {
-  "content": "cococooment"
+  "comment_content": "dfdf meeee"
 }
 ###
 
@@ -83,10 +81,29 @@ GET http://localhost:8080/api/auth/board/comment
 Content-Type: application/json
 Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjcxMzQ0LCJpYXQiOjE2NjYxODQ5NDR9.vLMmhoBNeSWdRaCoxqKHmDqsePSyEwhPzhy-spnuvbY
 
+###
+POST http://localhost:8080/auth/comments/1/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM1MDY4LCJpYXQiOjE2NjY2MzE0Njh9.RCRSilMmzS6v9Z97DJYW1PUrWnFAqsgEllMKw71Ysl8
 
 
 ###
 
+PUT http://localhost:8080/auth/comments/10/update
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjQxMjAwLCJpYXQiOjE2NjY2Mzc2MDB9.fArRjJ050fD1qSDkr3aCLsyvPzDh60oe7QFF-TmJtM8
+
+{
+  "comment_content": "change to this"
+}
+
+###
+
+DELETE http://localhost:8080/auth/comments/13/delete
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjQyNDYyLCJpYXQiOjE2NjY2Mzg4NjJ9.q6i48nqwQ5ukKc4JFhzKRcpPXx1ZEc-s10HfkFygh5I
+
+###
 
 GET http://localhost:8080/api/issue/token
 Accept: application/json

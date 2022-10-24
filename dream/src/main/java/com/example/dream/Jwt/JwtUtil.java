@@ -33,7 +33,7 @@ import java.util.Optional;
 public class JwtUtil {
     private final RefreshTokenRepository refreshTokenRepository;
     private final UserDetailsService userDetailsService;
-    public static final String ACCESS_TOKEN = "Access_Token";
+    public static final String ACCESS_TOKEN = "Authorization";
     public static final String REFRESH_TOKEN = "Refresh_Token";
     private static final long ACCESS_TIME = 1000L * 60 * 60; //1HR
     private static final long REFRESH_TIME = 1000L * 60 * 60 * 24 * 2; //48HR

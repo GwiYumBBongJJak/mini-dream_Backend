@@ -30,7 +30,6 @@ public class MemberService {
     public LoginResponseDto signup(MemberRequestDto requestDto) {
         //username duplication check
         if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
-//            throw new RuntimeException("duplication in username");
             return new LoginResponseDto("이미 사용중인 아이디입니다",HttpStatus.BAD_REQUEST.value());
         };
 
@@ -38,7 +37,7 @@ public class MemberService {
         Member member = new Member(requestDto);
 
         memberRepository.save(member);
-        return new LoginResponseDto("Sign up Success", HttpStatus.OK.value());
+        return new LoginResponseDto("회원가입이 완료 되었습니다", HttpStatus.OK.value());
 
     }
 
@@ -53,7 +52,9 @@ public class MemberService {
 
         }
         TokenDto tokenDto = jwtUtil.createAllToken(loginDto.getUsername());
+
         TokenNicknameDto nicknameDto = new TokenNicknameDto(tokenDto.getAccessToken(), tokenDto.getRefreshToken(), member.getNickname());
+
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByMemberUsername(loginDto.getUsername());
         if (refreshToken.isPresent()) {
             refreshTokenRepository.save(refreshToken.get().update(tokenDto.getRefreshToken()));
@@ -66,7 +67,6 @@ public class MemberService {
 
         return new ResponseEntity<>(nicknameDto ,HttpStatus.ACCEPTED);
 
-//        return new LoginResponseDto("로그인 성공!", HttpStatus.OK.value());
     }
     private void setHeader(HttpServletResponse response, TokenDto tokenDto){
         String accessToken = "bearer "+tokenDto.getAccessToken();
@@ -76,7 +76,6 @@ public class MemberService {
 
     public ResponseEntity<?> checkNickname(String nickname) {
        Optional<Member> member = memberRepository.findByNickname(nickname);
-        System.out.println(member+" this is from member service check nickname");
        if(member.isPresent()){
            return new ResponseEntity<>("이미 사용중인 닉네임 입니다",HttpStatus.ALREADY_REPORTED);
        }
@@ -91,7 +90,4 @@ public class MemberService {
         }
         return new ResponseEntity<>("사용 가능한 아이디 입니다!",HttpStatus.OK);
     }
-
-
-
 }

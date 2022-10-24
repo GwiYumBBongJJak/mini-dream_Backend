@@ -2,19 +2,25 @@ package com.example.dream.entity;
 
 
 import com.example.dream.dto.BoardDto;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor
-
 public class Board extends Timestamp{
+//    @Formula("(select count(1) from comment bc where bc.board_id = id)")
+//    private int totalCommentCount;
+//
+//    @Formula("(select count(1) from like bc where bc.board_id = id)")
+//    private int totalLikeCount;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long board_id;
@@ -31,13 +37,12 @@ public class Board extends Timestamp{
 //    @Column
 //    private String username;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
     // member 생성자?
 
-    @Column
-    @OneToMany
-    private List<Comment> comment;
+
 
     // 양방향 관계를 가급적이면 활용 안해야 한다. // why? n+1 문제가 발생 > 확인해라.
 
