@@ -15,7 +15,7 @@ public class BoardDto {
     private String title;
     @NotBlank
     private String content;
-    
+
     private List<Comment> commentList;
 
     public BoardDto(String title, String content, List<Comment> commentList) {

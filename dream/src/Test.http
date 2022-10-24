@@ -2,8 +2,8 @@ POST http://localhost:8080/api/member/register
 Content-Type: application/json
 
 {
-  "username": "testing",
-  "nickname": "adam2",
+  "username": "adamm",
+  "nickname": "adam3",
   "password": "bin12345"
 }
 
@@ -13,7 +13,7 @@ POST http://localhost:8080/api/member/login
 Content-Type: application/json
 
 {
-  "username": "testing",
+  "username": "adamm",
   "password": "bin12345"
 }
 
@@ -129,6 +129,11 @@ Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjQ2NT
 DELETE http://localhost:8080/api/auth/boards/delete/1
 Content-Type: application/json
 Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MTg3Mjk4LCJpYXQiOjE2NjYxMDA4OTh9._sVp2TPHOXuBu57FcbKbz-KhUw9A6YjNsI4N_4vR_tg
+
+###
+
+POST http://localhost:8080/api/auth/1/like
+
 ###
 
 PUT http://localhost:8080/api/auth/boards/update/2
@@ -140,11 +145,6 @@ Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjY0N
 }
 
 ###
-POST http://localhost:8080/api/auth/heart/like/1
+POST http://localhost:8080/api/auth/1/like/
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM0MjYxLCJpYXQiOjE2NjYyNDc4NjF9.OyIja8YgLcPfHSSR5w12APxL1pYMdVWOHUBiKYNU9Zo
-
-
-
-
-
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtbSIsImV4cCI6MTY2NjY0ODA3MiwiaWF0IjoxNjY2NjQ0NDcyfQ.sCfpfz3VU1LarKVWehjriH_ukmsBDtXr0VkHp8Kpeec
