@@ -8,6 +8,7 @@ import com.example.dream.service.MemberService;
 import com.example.dream.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,14 +23,25 @@ public class MemberController {
     private final MemberService memberService;
     private final JwtUtil jwtUtil;
 
-    @PostMapping("/member/signup")
-    public LoginResponseDto signup(@RequestBody @Valid MemberRequestDto requestDto) {
+    @PostMapping(value = "/member/register", consumes = "application/json")
+    public LoginResponseDto signup(@RequestBody @Valid MemberRequestDto requestDto ) {
         return memberService.signup(requestDto);
     }
 
-    @PostMapping("/member/login")
-    public LoginResponseDto login(@RequestBody @Valid LoginDto dto, HttpServletResponse response) {
+    @PostMapping(value = "/member/login", consumes = "application/json")
+    public ResponseEntity<?> login(@RequestBody @Valid LoginDto dto, HttpServletResponse response) {
         return memberService.login(dto, response);
+    }
+
+    @PostMapping(value = "/member/id/{username}")
+    public ResponseEntity<?> checkUsername(@PathVariable String username){
+        System.out.println(username);
+        return memberService.checkUsername(username);
+    }
+
+    @PostMapping(value = "/member/nickname/{nickname}")
+    public ResponseEntity<?> checkNickname(@PathVariable String nickname){
+        return memberService.checkNickname(nickname);
     }
 
     @GetMapping("/issue/token")

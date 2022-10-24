@@ -13,6 +13,7 @@ public class BoardResponseDto {
     private String nickname;
     // private List<Comment> comments;
 
+
     public BoardResponseDto(Board board) {
         this.title = board.getBoard_title();
         this.content = board.getBoard_content();

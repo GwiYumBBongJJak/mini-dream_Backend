@@ -5,15 +5,17 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class TokenDto {
+public class TokenNicknameDto {
     private String accessToken;
     private String refreshToken;
 
+    private String nickname;
 
 
-    public TokenDto(String accessToken, String refreshToken) {
+
+    public TokenNicknameDto(String accessToken, String refreshToken, String nickname) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
+        this.nickname = nickname;
     }
 }
-
