@@ -20,10 +20,10 @@ public class Board extends Timestamp{
     private Long board_id;
 
     @Column
-    private String board_content;
+    private String boardContent;
 
     @Column
-    private String board_title;
+    private String boardTitle;
 
 //    @Column
 //    private String nickname;
@@ -46,8 +46,8 @@ public class Board extends Timestamp{
 
 
     public void boardUpdate(BoardDto dto) {
-        this.board_title = dto.getTitle() != null ? dto.getTitle() : this.board_title;
-        this.board_content = dto.getContent() != null ? dto.getContent() : this.board_title;
+        this.boardTitle = dto.getBoardTitle() != null ? dto.getBoardTitle() : this.boardTitle;
+        this.boardContent = dto.getBoardContent() != null ? dto.getBoardContent() : this.boardContent;
 //        this.nickname = dto.getNickname() != null ? dto.getNickname() : this.nickname;
 //        this.username = dto.getUsername() != null ? dto.getUsername() : this.username;
     }

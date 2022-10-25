@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api")
 public class BoardController {
     private final BoardService boardService;
 
@@ -29,26 +29,26 @@ public class BoardController {
 
     // 게시글 등록
     // @AuthenticationPrincipal 활용 장점 : Jwt 필터에서 검증된걸 가져온다, 기존 내 방식은 2중 검증이다 어떻게 보면.
-    @PostMapping("/boards/post")
+    @PostMapping("/auth/boards/create")
     public GlobalResDto createBoard(@RequestBody BoardDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         System.out.println(userDetails);
         return boardService.saveBoard(requestDto, userDetails.getMember());
     }
 
     // 게시글 조회
-    @GetMapping("/boards/{id}")
+    @GetMapping("/auth/boards/{id}")
     public ResponseEntity<BoardResponseDto> getBoard(@PathVariable Long id) {
         return boardService.getBoard(id);
     }
 
     //게시글 수정
-    @PutMapping("/boards/{id}")
+    @PutMapping("/auth/boards/update/{id}")
     public GlobalResDto updateBoard(@PathVariable Long id, @RequestBody BoardDto requestDto) {
         return boardService.updateBoard(id, requestDto);
     }
 
     //게시글 삭제
-    @DeleteMapping("/boards/{id}")
+    @DeleteMapping("/auth/boards/delete/{id}")
     public GlobalResDto deleteBoard(@PathVariable Long id) {
         return boardService.deleteBoard(id);
     }
