@@ -2,8 +2,8 @@ POST http://localhost:8080/api/member/register
 Content-Type: application/json
 
 {
-  "username": "testing",
-  "nickname": "adam2",
+  "username": "dim335",
+  "nickname": "dim135",
   "password": "bin12345"
 }
 
@@ -13,19 +13,19 @@ POST http://localhost:8080/api/member/login
 Content-Type: application/json
 
 {
-  "username": "testing",
+  "username": "dim335",
   "password": "bin12345"
 }
 
 ###
 
-POST http://localhost:8080/api/auth/boards/create
+POST http://localhost:8080/auth/boards/create
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjY5NDA2LCJpYXQiOjE2NjY2NjU4MDZ9.k5oUXPWWLvx3Gtu0wKVF4FerolfPrx-OHwm0YMdM8l0
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaW0zMzUiLCJleHAiOjE2NjY3MjQwNzMsImlhdCI6MTY2NjcyMDQ3M30.ymH12QcUkH3sb0dAGStnZP_4FchSjvd78nBOJm8G2LU
 
 {
-  "boardContent": "첫번째 포스트",
-  "boardTitle": "배고파"
+  "boardContent": "세번째 포스트",
+  "boardTitle": "배고파333"
 }
 
 
@@ -34,26 +34,29 @@ Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjY5NDA2L
 
 ###
 
-GET http://localhost:8080/api/auth/boards
+GET http://localhost:8080/boards
 Content-Type: application/json
-Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+//Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
 
 ###
 
 GET http://localhost:8080/api/auth/boards/1
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
 
 ###
 
-PUT http://localhost:8080/api/auth/boards/6
+PUT http://localhost:8080/auth/boards/modify/6
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaW0zMzUiLCJleHAiOjE2NjY3MjQwNzMsImlhdCI6MTY2NjcyMDQ3M30.ymH12QcUkH3sb0dAGStnZP_4FchSjvd78nBOJm8G2LU
 
 {
-  "content": "이것도 테스트용",
+  "content": "수정 테스트",
   "title": "이건 테스트용"
 }
+
+
+
 
 ###
 
@@ -63,9 +66,9 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8080/api/auth/boards/4
+DELETE http://localhost:8080/auth/boards/delete/6
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaW0zMzUiLCJleHAiOjE2NjY3MjQwNzMsImlhdCI6MTY2NjcyMDQ3M30.ymH12QcUkH3sb0dAGStnZP_4FchSjvd78nBOJm8G2LU
 
 
 ###

@@ -69,10 +69,14 @@ public class BoardService {
     }
 
     @Transactional
-    public GlobalResDto updateBoard(Long id, BoardDto boardRequestDto) {
-
+    public GlobalResDto updateBoard(Long id, BoardDto boardRequestDto, Member member) {
 
         Board board = checkBoard(boardRepository, id);
+
+        if (!board.getMember().getUsername().equals(member.getUsername())) {
+            throw new RuntimeException("작성자만 수정이 가능합니다.");
+        }
+
         board.boardUpdate(boardRequestDto);
 
         return new GlobalResDto("게시글 수정이 완료되었습니다.", HttpStatus.OK.value());
@@ -80,9 +84,16 @@ public class BoardService {
     }
 
     @Transactional
-    public GlobalResDto deleteBoard(Long id) {
+    public GlobalResDto deleteBoard(Long id, Member member) {
+
         Board board = checkBoard(boardRepository, id);
+
+        if (!board.getMember().getUsername().equals(member.getUsername())) {
+            throw new RuntimeException("작성자만 삭제가 가능합니다.");
+        }
+
         boardRepository.delete(board);
+
         return new GlobalResDto("게시글 삭제가 완료되었습니다.", HttpStatus.OK.value());
     }
 
