@@ -2,16 +2,15 @@ package com.example.dream.service;
 
 
 import com.example.dream.Jwt.JwtUtil;
-import com.example.dream.dto.LoginDto;
-import com.example.dream.dto.LoginResponseDto;
-import com.example.dream.dto.MemberRequestDto;
-import com.example.dream.dto.TokenDto;
+import com.example.dream.dto.*;
 import com.example.dream.entity.Member;
 import com.example.dream.entity.RefreshToken;
 import com.example.dream.repository.MemberRepository;
 import com.example.dream.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,8 @@ public class MemberService {
     public LoginResponseDto signup(MemberRequestDto requestDto) {
         //username duplication check
         if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
-            throw new RuntimeException("duplication in username");
+//            throw new RuntimeException("duplication in username");
+            return new LoginResponseDto("이미 사용중인 아이디입니다",HttpStatus.BAD_REQUEST.value());
         };
 
         requestDto.setPasswordEncoder(passwordEncoder.encode(requestDto.getPassword()));
@@ -43,15 +43,18 @@ public class MemberService {
 
     }
 
-    public LoginResponseDto login(LoginDto loginDto, HttpServletResponse response) {
-        System.out.println(loginDto.getUsername());
+    public ResponseEntity<?> login(LoginDto loginDto, HttpServletResponse response) {
+
         Member member = memberRepository.findByUsername(loginDto.getUsername()).orElseThrow(
                 () -> new RuntimeException("User not found")
         );
         if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
-            throw new RuntimeException("Password mismatch");
+//            throw new RuntimeException("Password mismatch");
+            return new ResponseEntity<>("아이디 혹은 패스워드를 확인해 주세요", HttpStatus.BAD_REQUEST);
+
         }
         TokenDto tokenDto = jwtUtil.createAllToken(loginDto.getUsername());
+        TokenNicknameDto nicknameDto = new TokenNicknameDto(tokenDto.getAccessToken(), tokenDto.getRefreshToken(), member.getNickname());
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByMemberUsername(loginDto.getUsername());
         if (refreshToken.isPresent()) {
             refreshTokenRepository.save(refreshToken.get().update(tokenDto.getRefreshToken()));
@@ -61,10 +64,35 @@ public class MemberService {
         }
         setHeader(response, tokenDto);
 
-        return new LoginResponseDto("Login Success", HttpStatus.OK.value());
+
+        return new ResponseEntity<>(nicknameDto ,HttpStatus.ACCEPTED);
+
+//        return new LoginResponseDto("로그인 성공!", HttpStatus.OK.value());
     }
     private void setHeader(HttpServletResponse response, TokenDto tokenDto){
-        response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());
+        String accessToken = "Bearer "+tokenDto.getAccessToken();
+        response.addHeader( JwtUtil.ACCESS_TOKEN,accessToken);
         response.addHeader(JwtUtil.REFRESH_TOKEN, tokenDto.getRefreshToken());
     }
+
+    public ResponseEntity<?> checkNickname(String nickname) {
+       Optional<Member> member = memberRepository.findByNickname(nickname);
+        System.out.println(member+" this is from member service check nickname");
+       if(member.isPresent()){
+           return new ResponseEntity<>("이미 사용중인 닉네임 입니다",HttpStatus.ALREADY_REPORTED);
+       }
+
+       return new ResponseEntity<>("사용 가능한 닉네임 입니다!",HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> checkUsername(String username) {
+        Optional<Member> member = memberRepository.findByUsername(username);
+        if(member.isPresent()){
+            return new ResponseEntity<>("이미 사용중인 아이디 입니다",HttpStatus.ALREADY_REPORTED);
+        }
+        return new ResponseEntity<>("사용 가능한 아이디 입니다!",HttpStatus.OK);
+    }
+
+
+
 }
