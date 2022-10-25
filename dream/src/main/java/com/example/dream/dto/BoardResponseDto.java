@@ -11,6 +11,7 @@ public class BoardResponseDto {
     private String boardTitle;
     private String boardContent;
     private String nickname;
+    private Long memberID;
     private Long boardId;
     // private List<Comment> comments;
 
@@ -20,6 +21,7 @@ public class BoardResponseDto {
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();
         this.nickname = board.getMember().getNickname();
+        this.memberID = board.getMember().getMember_id();
     }
 
 }

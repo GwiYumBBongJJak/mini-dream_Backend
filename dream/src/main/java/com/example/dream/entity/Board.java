@@ -35,10 +35,6 @@ public class Board extends Timestamp{
     private Member member;
     // member 생성자?
 
-    @Column
-    @OneToMany
-    private List<Comment> comment;
-
     // 양방향 관계를 가급적이면 활용 안해야 한다. // why? n+1 문제가 발생 > 확인해라.
 
     @Column
