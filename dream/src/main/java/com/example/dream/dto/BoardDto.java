@@ -1,7 +1,5 @@
 package com.example.dream.dto;
 
-import com.example.dream.entity.Member;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,9 +12,9 @@ import javax.validation.constraints.NotBlank;
 public class BoardDto {
 
     @NotBlank
-    private String title;
+    private String boardTitle;
     @NotBlank
-    private String content;
+    private String boardContent;
 
 //    private Member member;
 //    @NotBlank
@@ -25,8 +23,8 @@ public class BoardDto {
 //    private String username;
 
     public BoardDto(String title, String content) {
-        this.title = title;
-        this.content = content;
+        this.boardTitle = title;
+        this.boardContent = content;
     }
 }
 

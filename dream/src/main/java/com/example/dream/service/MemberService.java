@@ -8,6 +8,7 @@ import com.example.dream.entity.RefreshToken;
 import com.example.dream.repository.MemberRepository;
 import com.example.dream.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -69,7 +70,7 @@ public class MemberService {
 //        return new LoginResponseDto("로그인 성공!", HttpStatus.OK.value());
     }
     private void setHeader(HttpServletResponse response, TokenDto tokenDto){
-        String accessToken = "bearer "+tokenDto.getAccessToken();
+        String accessToken = "Bearer "+tokenDto.getAccessToken();
         response.addHeader( JwtUtil.ACCESS_TOKEN,accessToken);
         response.addHeader(JwtUtil.REFRESH_TOKEN, tokenDto.getRefreshToken());
     }
