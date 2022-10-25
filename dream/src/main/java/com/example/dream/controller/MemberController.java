@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -24,7 +24,7 @@ public class MemberController {
     private final JwtUtil jwtUtil;
 
     @PostMapping(value = "/member/register", consumes = "application/json")
-    public LoginResponseDto signup(@RequestBody @Valid MemberRequestDto requestDto ) {
+    public ResponseEntity<?> signup(@RequestBody @Valid MemberRequestDto requestDto ) {
         return memberService.signup(requestDto);
     }
 
@@ -48,5 +48,9 @@ public class MemberController {
     public LoginResponseDto issuedToken(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response){
         response.addHeader(JwtUtil.ACCESS_TOKEN,jwtUtil.createToken(userDetails.getMember().getUsername(),"Access"));
         return new LoginResponseDto("Issue Success", HttpStatus.OK.value());
+    }
+    @GetMapping("/auth/member/info")
+    public LoginResponseDto getNickname(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        return memberService.getNickname(userDetails);
     }
 }

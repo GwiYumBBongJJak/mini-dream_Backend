@@ -31,13 +31,6 @@ public class Board extends Timestamp{
     @Column
     private String board_title;
 
-//    @Column
-//    private String nickname;
-//
-//    @Column
-//    private String username;
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
     // member 생성자?
@@ -53,7 +46,9 @@ public class Board extends Timestamp{
     public void boardUpdate(BoardDto dto) {
         this.board_title = dto.getTitle() != null ? dto.getTitle() : this.board_title;
         this.board_content = dto.getContent() != null ? dto.getContent() : this.board_title;
-//        this.nickname = dto.getNickname() != null ? dto.getNickname() : this.nickname;
+//        this.like_count = dto.get
+
+        //        this.nickname = dto.getNickname() != null ? dto.getNickname() : this.nickname;
 //        this.username = dto.getUsername() != null ? dto.getUsername() : this.username;
     }
 

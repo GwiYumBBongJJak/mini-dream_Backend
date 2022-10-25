@@ -1,4 +1,4 @@
-POST http://localhost:8080/api/member/register
+POST http://localhost:8080/member/register
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/api/member/login
+POST http://localhost:8080/member/login
 Content-Type: application/json
 
 {
@@ -19,9 +19,9 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/api/auth/boards/post
+POST http://localhost:8080/auth/boards/post
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0LCJpYXQiOjE2NjY2MzMwMzR9.h_GCxDzb30FNKqze3D_UQSrh7e7h2F8EUs7u4_Ulukw
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtbSIsImV4cCI6MTY2Njg0MTU1MywiaWF0IjoxNjY2NjY4NzUzfQ.Hk0ndR5QUVyO7arAQU2JKnc0XzQobbbZ0h9Y4CofPeo
 
 {
   "content": "첫번째 포스트",
@@ -34,18 +34,18 @@ Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0L
 
 ###
 
-GET http://localhost:8080/api/auth/boards
+GET http://localhost:8080/auth/boards
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0LCJpYXQiOjE2NjY2MzMwMzR9.h_GCxDzb30FNKqze3D_UQSrh7e7h2F8EUs7u4_Ulukw
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtbSIsImV4cCI6MTY2NjgyNTU3MSwiaWF0IjoxNjY2NjUyNzcxfQ.GI9FpemqM1v43ivOTcceEHWQh4xr7AO8YczyrnElxyA
 
 ###
 
-GET http://localhost:8080/api/auth/boards/2
+GET http://localhost:8080/auth/boards/2
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM3MjM5LCJpYXQiOjE2NjY2MzM2Mzl9.6fRE7oIwaw3UDQPRI1ZUUNSp1XkeE2j6AIO4zhTf75g
 ###
 
-PUT http://localhost:8080/api/auth/boards/1
+PUT http://localhost:8080/auth/boards/1
 Content-Type: application/json
 Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0LCJpYXQiOjE2NjY2MzMwMzR9.h_GCxDzb30FNKqze3D_UQSrh7e7h2F8EUs7u4_Ulukw
 
@@ -56,16 +56,15 @@ Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM2NjM0L
 
 ###
 
-GET http://localhost:8080/api/member/id/test22ing
+GET http://localhost:8080/member/id/test22ing
 Content-Type: application/json
 
 
 ###
 
-DELETE http://localhost:8080/api/auth/boards/
+DELETE http://localhost:8080/auth/boards/1
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NjM3MjM5LCJpYXQiOjE2NjY2MzM2Mzl9.6fRE7oIwaw3UDQPRI1ZUUNSp1XkeE2j6AIO4zhTf75g
-
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtbSIsImV4cCI6MTY2Njg1NzE2NCwiaWF0IjoxNjY2Njg0MzY0fQ.Sr0va5r-9fWK7o1z6RHiraoJhuPBAkhL1Dlk_S5q5hU
 ###
 
 POST http://localhost:8080/auth/comments/1/create

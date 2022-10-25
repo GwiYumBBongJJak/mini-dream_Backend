@@ -1,18 +1,15 @@
 package com.example.dream.entity;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
 @NoArgsConstructor
-public class Likes {
-
+public class Dislikes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long like_id;
+    private Long dislike_id;
 
     @Column
     private Long boardId;
@@ -20,15 +17,8 @@ public class Likes {
     @Column
     private Long memberId;
 
-    public Likes(Long boardId, Long memberId) {
+    public Dislikes(Long boardId, Long memberId) {
         this.boardId = boardId;
         this.memberId = memberId;
     }
 }
-
-
-
-
-
-
-

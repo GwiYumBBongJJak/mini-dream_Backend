@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +22,6 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    // private final CommentRepository commentRepository;
-//    private final JwtUtil jwtUtil;
 
 
     @Transactional

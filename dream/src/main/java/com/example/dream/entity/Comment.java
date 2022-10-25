@@ -1,9 +1,10 @@
 package com.example.dream.entity;
 
 import com.example.dream.dto.CommentDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -18,9 +19,10 @@ public class Comment extends Timestamp {
     @Column
     private String comment_content;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "board_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
     @Column

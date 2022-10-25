@@ -21,7 +21,7 @@ public class BoardDto {
     public BoardDto(String title, String content, List<Comment> commentList) {
         this.title = title;
         this.content = content;
-        this.commentList = commentList;
+//        this.commentList = commentList;
     }
 
     public BoardDto(String title, String content) {

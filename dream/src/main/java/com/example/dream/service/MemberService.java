@@ -27,33 +27,34 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public LoginResponseDto signup(MemberRequestDto requestDto) {
-        //username duplication check
-        if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
-            return new LoginResponseDto("이미 사용중인 아이디입니다",HttpStatus.BAD_REQUEST.value());
-        };
+    public ResponseEntity<?> signup(MemberRequestDto requestDto) {
 
         requestDto.setPasswordEncoder(passwordEncoder.encode(requestDto.getPassword()));
         Member member = new Member(requestDto);
 
         memberRepository.save(member);
-        return new LoginResponseDto("회원가입이 완료 되었습니다", HttpStatus.OK.value());
+        LoginResponseDto loginDto = new LoginResponseDto("회원가입이 완료 되었습니다", HttpStatus.OK.value());
+        return new ResponseEntity<>(loginDto,HttpStatus.OK);
 
     }
 
     public ResponseEntity<?> login(LoginDto loginDto, HttpServletResponse response) {
 
-        Member member = memberRepository.findByUsername(loginDto.getUsername()).orElseThrow(
-                () -> new RuntimeException("User not found")
-        );
-        if (!passwordEncoder.matches(loginDto.getPassword(), member.getPassword())) {
-//            throw new RuntimeException("Password mismatch");
-            return new ResponseEntity<>("아이디 혹은 패스워드를 확인해 주세요", HttpStatus.BAD_REQUEST);
+        Optional<Member> member = memberRepository.findByUsername(loginDto.getUsername());
+        if(member.isEmpty()){
+            LoginResponseDto dto = new LoginResponseDto("아이디 혹은 패스워드를 확인해 주세요", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
+        }
+        Member member1= member.orElseThrow(()-> new IllegalArgumentException("nonono"));
+
+        if (!passwordEncoder.matches(loginDto.getPassword(), member1.getPassword())) {
+            LoginResponseDto dto = new LoginResponseDto("아이디 혹은 패스워드를 확인해 주세요", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(dto, HttpStatus.BAD_REQUEST);
 
         }
         TokenDto tokenDto = jwtUtil.createAllToken(loginDto.getUsername());
 
-        TokenNicknameDto nicknameDto = new TokenNicknameDto(tokenDto.getAccessToken(), tokenDto.getRefreshToken(), member.getNickname());
+        TokenNicknameDto nicknameDto = new TokenNicknameDto(tokenDto.getAccessToken(), tokenDto.getRefreshToken(), member1.getNickname(),1004);
 
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByMemberUsername(loginDto.getUsername());
         if (refreshToken.isPresent()) {
@@ -77,17 +78,24 @@ public class MemberService {
     public ResponseEntity<?> checkNickname(String nickname) {
        Optional<Member> member = memberRepository.findByNickname(nickname);
        if(member.isPresent()){
-           return new ResponseEntity<>("이미 사용중인 닉네임 입니다",HttpStatus.ALREADY_REPORTED);
+           LoginResponseDto dto = new LoginResponseDto("이미 사용중인 닉네임 입니다", HttpStatus.BAD_REQUEST.value());
+           return new ResponseEntity<>(dto,HttpStatus.BAD_REQUEST);
        }
-
-       return new ResponseEntity<>("사용 가능한 닉네임 입니다!",HttpStatus.OK);
+       LoginResponseDto dto = new LoginResponseDto("사용 가능한 닉네임 입니다!", HttpStatus.OK.value());
+       return new ResponseEntity<>(dto,HttpStatus.OK);
     }
 
     public ResponseEntity<?> checkUsername(String username) {
         Optional<Member> member = memberRepository.findByUsername(username);
         if(member.isPresent()){
-            return new ResponseEntity<>("이미 사용중인 아이디 입니다",HttpStatus.ALREADY_REPORTED);
+            LoginResponseDto dto = new LoginResponseDto("이미 사용중인 아이디 입니다", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(dto,HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("사용 가능한 아이디 입니다!",HttpStatus.OK);
+        LoginResponseDto dto = new LoginResponseDto("사용 가능한 아이디 입니다!", HttpStatus.OK.value());
+        return new ResponseEntity<>(dto,HttpStatus.OK);
+    }
+
+    public LoginResponseDto getNickname(UserDetailsImpl userDetails) {
+        return new LoginResponseDto(userDetails.getMember().getNickname(),HttpStatus.OK.value());
     }
 }

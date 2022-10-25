@@ -1,4 +1,16 @@
 package com.example.dream.repository;
 
-public class DislikeRepository {
+import com.example.dream.entity.Dislikes;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface DislikeRepository extends JpaRepository<Dislikes,Long> {
+
+    Optional<Dislikes> findDislikesBymemberId(Long member_id);
+
+
+
+    List<Dislikes> findDislikesByboardId(Long board_id);
 }
