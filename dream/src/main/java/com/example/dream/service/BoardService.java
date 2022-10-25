@@ -44,7 +44,7 @@ public class BoardService {
 
         boardRepository.save(board);
 
-        return new GlobalResDto("게시글 저장이 완료되었습니다.", HttpStatus.OK.value());
+        return new GlobalResDto("게시글 작성이 완료되었습니다.", HttpStatus.OK.value());
     }
 
     @Transactional(readOnly = true)
@@ -75,7 +75,7 @@ public class BoardService {
         Board board = checkBoard(boardRepository, id);
         board.boardUpdate(boardRequestDto);
 
-        return new GlobalResDto("게시판 수정이 완료되었습니다.", HttpStatus.OK.value());
+        return new GlobalResDto("게시글 수정이 완료되었습니다.", HttpStatus.OK.value());
 
     }
 
@@ -83,12 +83,12 @@ public class BoardService {
     public GlobalResDto deleteBoard(Long id) {
         Board board = checkBoard(boardRepository, id);
         boardRepository.delete(board);
-        return new GlobalResDto("게시판 삭제가 완료되었습니다.", HttpStatus.OK.value());
+        return new GlobalResDto("게시글 삭제가 완료되었습니다.", HttpStatus.OK.value());
     }
 
     private Board checkBoard(BoardRepository boardRepository, Long id) {
         return boardRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("게시판이 존재하지 않습니다.")
+                () -> new RuntimeException("게시글이 존재하지 않습니다.")
         );
     }
 

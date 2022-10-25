@@ -1,7 +1,5 @@
 package com.example.dream.dto;
 
-import com.example.dream.entity.Member;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

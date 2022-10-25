@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api")
 public class BoardController {
     private final BoardService boardService;
 
@@ -36,13 +35,13 @@ public class BoardController {
     }
 
     // 게시글 조회
-    @GetMapping("/auth/boards/{id}")
+    @GetMapping("/boards/{id}")
     public ResponseEntity<BoardResponseDto> getBoard(@PathVariable Long id) {
         return boardService.getBoard(id);
     }
 
     //게시글 수정
-    @PutMapping("/auth/boards/update/{id}")
+    @PutMapping("/auth/boards/modify/{id}")
     public GlobalResDto updateBoard(@PathVariable Long id, @RequestBody BoardDto requestDto) {
         return boardService.updateBoard(id, requestDto);
     }

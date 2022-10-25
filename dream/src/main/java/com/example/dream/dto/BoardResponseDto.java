@@ -20,7 +20,6 @@ public class BoardResponseDto {
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();
         this.nickname = board.getMember().getNickname();
-        // this.comments = board.getComments();
     }
 
 }
