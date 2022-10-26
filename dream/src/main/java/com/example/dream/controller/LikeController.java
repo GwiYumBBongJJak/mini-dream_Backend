@@ -11,13 +11,14 @@
 //import org.springframework.web.bind.annotation.RestController;
 //
 //@RestController
-//@RequestMapping("/api/auth")
+//@RequestMapping("/auth")
 //@RequiredArgsConstructor
 //public class LikeController {
 //    private final LikeService likeService;
 //
 //    @PostMapping("/{board_id}/like")
-//    public ResponseEntity<?> like(@PathVariable Long board_id, @AuthenticationPrincipal UserDetailsImpl userDetails){
-//        return likeService.like(board_id,userDetails.getMember().getMember_id());
+//    public ResponseEntity<?> likes(@PathVariable Long board_id,
+//                                   @AuthenticationPrincipal UserDetailsImpl userDetails){
+//        return likeService.likes(board_id,userDetails.getMember().getMember_id());
 //    }
 //}

@@ -6,15 +6,16 @@ import com.example.dream.dto.BoardListResponseDto;
 import com.example.dream.dto.BoardResponseDto;
 import com.example.dream.dto.GlobalResDto;
 import com.example.dream.entity.Board;
+import com.example.dream.entity.Comment;
 import com.example.dream.entity.Member;
 import com.example.dream.repository.BoardRepository;
+import com.example.dream.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    // private final CommentRepository commentRepository;
+     private final CommentRepository commentRepository;
 //    private final JwtUtil jwtUtil;
 
 
@@ -37,26 +38,28 @@ public class BoardService {
         Board board = Board.builder()
 //                .username(boardRequestDto.getUsername())
 //                .nickname(boardRequestDto.getNickname())
-                .board_content(boardRequestDto.getContent())
-                .board_title(boardRequestDto.getTitle())
+                .boardContent(boardRequestDto.getBoardContent())
+                .boardTitle(boardRequestDto.getBoardTitle())
                 .member(member)
                 .build();
 
         boardRepository.save(board);
 
-        return new GlobalResDto("Success Save Course", HttpStatus.OK.value());
+        return new GlobalResDto("게시글 작성이 완료되었습니다.", HttpStatus.OK.value());
     }
 
     @Transactional(readOnly = true)
     public ResponseEntity<BoardResponseDto> getBoard(Long id) {
-
+    // board title , memeber nickname, like count, dislike count, horror count
+        List<Comment> commentList = commentRepository.findCommentByBoardId(id);
         Board board = checkBoard(boardRepository, id);
 
-        return ResponseEntity.ok(new BoardResponseDto(board));
+        return ResponseEntity.ok(new BoardResponseDto(board,commentList));
     }
 
     @Transactional(readOnly = true)
     public BoardListResponseDto getBoards() {
+
 
         BoardListResponseDto boardListResponseDto = new BoardListResponseDto();
         List<Board> boards = boardRepository.findAll();
@@ -64,6 +67,7 @@ public class BoardService {
         for (Board board : boards) {
             boardListResponseDto.addBoard(new BoardResponseDto(board));
         }
+
 
         return boardListResponseDto;
     }
@@ -75,20 +79,22 @@ public class BoardService {
         Board board = checkBoard(boardRepository, id);
         board.boardUpdate(boardRequestDto);
 
-        return new GlobalResDto("Success Update Course", HttpStatus.OK.value());
+        return new GlobalResDto("게시글 수정이 완료되었습니다.", HttpStatus.OK.value());
 
     }
+
+    // 작성자가 삭제 할수있게끔 해주세요~
 
     @Transactional
     public GlobalResDto deleteBoard(Long id) {
         Board board = checkBoard(boardRepository, id);
         boardRepository.delete(board);
-        return new GlobalResDto("Success Delete Course", HttpStatus.OK.value());
+        return new GlobalResDto("게시글 삭제가 완료되었습니다.", HttpStatus.OK.value());
     }
 
     private Board checkBoard(BoardRepository boardRepository, Long id) {
         return boardRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Not Found Course")
+                () -> new RuntimeException("게시글이 존재하지 않습니다.")
         );
     }
 
