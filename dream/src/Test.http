@@ -2,7 +2,7 @@ POST http://localhost:8080/member/register
 Content-Type: application/json
 
 {
-  "username": "hihi2",
+  "username": "hihi4",
   "nickname": "adam12",
   "password": "bin12345"
 }
@@ -13,7 +13,7 @@ POST http://localhost:8080/member/login
 Content-Type: application/json
 
 {
-  "username": "hihi2",
+  "username": "hihi4",
   "password": "bin12345"
 }
 
@@ -36,14 +36,27 @@ Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwia
 
 GET http://localhost:8080/boards
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMyIsImV4cCI6MTY2Njc1NTQwMywiaWF0IjoxNjY2NzUxODAzfQ.c6ud6k1I5X-nUZ-eyHfop9mNOwF9rGKg-eA6rRqqr7w
 
 ###
 
-GET http://localhost:8080/boards/4
+POST http://localhost:8080/auth/8/reaction/like
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwiaWF0IjoxNjY2NzU2MzM4fQ.SRtxcv6pCP6BZKkg9SEYSRRwBExdAbjKHSpPgCsatpM
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc3MzI5NiwiaWF0IjoxNjY2NzY5Njk2fQ.rBQhjH-hjbD3urIHpvYP3BCNE-brniQaKT4WEFvUZGc
 
+###
+
+POST http://localhost:8080/auth/4/DISLIKE/
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY3MDM3NDIwMiwiaWF0IjoxNjY2Nzc0MjAyfQ.B_05vE7vhFPnq3j3CP7oMfAP-Wqyumw_k06CD4GmVCw
+
+
+
+
+###
+
+GET http://localhost:8080/boards/17
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4OTUyOSwiaWF0IjoxNjY2Nzg5NTI5fQ.gA1nD0_QRav-K0MwzqenZ3OxJTE7abOCxCoH53DWOBA
 
 ###
 
@@ -79,9 +92,9 @@ Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLC
 
 ###
 
-POST http://localhost:8080/auth/comments/4/create
+POST http://localhost:8080/auth/comments/17/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwiaWF0IjoxNjY2NzU2MzM4fQ.SRtxcv6pCP6BZKkg9SEYSRRwBExdAbjKHSpPgCsatpM
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4OTUyOSwiaWF0IjoxNjY2Nzg5NTI5fQ.gA1nD0_QRav-K0MwzqenZ3OxJTE7abOCxCoH53DWOBA
 
 {
   "comment": "cococooment"
@@ -99,10 +112,10 @@ Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMSIsImV4cCI6MTY2Njc1NTk3OSwi
 
 PUT http://localhost:8080/auth/comments/1/update
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMyIsImV4cCI6MTY2NjczMTA5MiwiaWF0IjoxNjY2NzI3NDkyfQ.WTPswSsm-7OLBPnozQjZ321MJYzAqbvvRQKiSJb2CfI
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY3MDM3NzgxMSwiaWF0IjoxNjY2Nzc3ODExfQ.FhDLcWpCegsCJTJL5igLrL3qmznE0gUTGJKnXHSWhg0
 
 {
-  "comment": "hihihihii"
+  "modifiedComment": "hihihihii"
 }
 
 ###
@@ -125,7 +138,7 @@ Content-Type: application/json
 
 GET http://localhost:8080/api/auth/boards
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjQ2NTkyLCJpYXQiOjE2NjYxNjAxOTJ9.OnVZUmzEtl_MyIg7hgh-WRLeFkaZZdv5sGE8tKmWEEM
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjQ2NTkyLCJpYXQiOjE2NjYxNjAxOTJ9.OnVZUmzEtl_MyIg7hgh-WRLeFkaZZdv5sGE8tKmWEEM
 
 ###
 
@@ -143,11 +156,18 @@ Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjY0N
 }
 
 ###
-POST http://localhost:8080/auth/2/like
+POST http://localhost:8080/auth/11/DISLIKE/
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMzMiLCJleHAiOjE2NjY3MjY4MzAsImlhdCI6MTY2NjcyMzIzMH0.vzcUPpKZgUo-Ss1MWLq_3kFrRvSs3OqjWBD4zCjFuRA
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4NzY4MSwiaWF0IjoxNjY2Nzg3NjgxfQ.fZ46RtXo6Edj2_h28C7FkExB4qiZpq2pJkSforKy9U0
 
 
+###
+POST http://localhost:8080/auth/11/LIKE/
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4NzY4MSwiaWF0IjoxNjY2Nzg3NjgxfQ.fZ46RtXo6Edj2_h28C7FkExB4qiZpq2pJkSforKy9U0
 
-
+###
+POST http://localhost:8080/auth/11/HORROR/
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4NzY4MSwiaWF0IjoxNjY2Nzg3NjgxfQ.fZ46RtXo6Edj2_h28C7FkExB4qiZpq2pJkSforKy9U0
 

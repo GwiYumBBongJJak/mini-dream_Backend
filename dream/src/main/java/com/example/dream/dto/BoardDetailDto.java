@@ -34,7 +34,7 @@ public class BoardDetailDto {
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();
         this.nickname = board.getMember().getNickname();
-        this.memberID = board.getMember().getMember_id();
+        this.memberID = board.getMember().getMemberId();
 //        this.likeCount = board.getLikeCount();
 //        this.dislikeCount = board.getDislikeCount();
 //        this.horrorCount = board.getHorrorCount();

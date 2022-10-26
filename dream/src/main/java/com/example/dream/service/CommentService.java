@@ -2,6 +2,7 @@ package com.example.dream.service;
 
 import com.example.dream.dto.CommentDto;
 import com.example.dream.dto.LoginResponseDto;
+import com.example.dream.dto.UpdateCommentIdDto;
 import com.example.dream.entity.Board;
 import com.example.dream.entity.Comment;
 import com.example.dream.entity.Member;
@@ -39,7 +40,7 @@ public class CommentService {
             LoginResponseDto response = new LoginResponseDto("작성자가 다릅니다", HttpStatus.BAD_REQUEST.value());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } else {
-            LoginResponseDto response = new LoginResponseDto("수정이 가능한 댓글입니다", HttpStatus.OK.value());
+            UpdateCommentIdDto response = new UpdateCommentIdDto("수정이 가능한 댓글입니다",commentId, HttpStatus.OK.value());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }
@@ -48,9 +49,13 @@ public class CommentService {
     @Transactional
     public ResponseEntity<?> updateComment(CommentDto dto, Long commentId, Member member) {
         Optional<Comment> optional = commentRepository.findById(commentId);
+        System.out.println(optional);
         Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
         comment.update(dto, member);
-        return new ResponseEntity<>(commentRepository.findAll(), HttpStatus.OK);
+//        return new ResponseEntity<>(commentRepository.findAll(), HttpStatus.OK);
+
+        Long boardId = comment.getBoardId();
+        return new ResponseEntity<>(commentRepository.findCommentByBoardId(boardId), HttpStatus.OK);
     }
 
     public ResponseEntity<?> isDelete(Long commentId, Member member) {
@@ -85,12 +90,7 @@ public class CommentService {
         }
 
 
-//        Optional<Comment> optional = commentRepository.findById(commentId);
-//        Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
-//        commentRepository.deleteById(commentId);
-//        LoginResponseDto response = new LoginResponseDto("삭제가 완료 되었습니다", HttpStatus.OK.value());
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+    }
 
 
         public ResponseEntity<?> getComments (Member member){
