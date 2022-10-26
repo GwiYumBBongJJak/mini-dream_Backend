@@ -1,9 +1,11 @@
 package com.example.dream.controller;
 
 import com.example.dream.dto.CommentDto;
+import com.example.dream.dto.LoginResponseDto;
 import com.example.dream.service.CommentService;
 import com.example.dream.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +26,12 @@ public class CommentController {
         return commentService.updateComment(dto,commentId,userDetails.getMember());
     }
 
-    @GetMapping("/{commentId}/isUpdate")// 이거를 하면 수정 완료 버튼 active 해주기
+    @PostMapping("/{commentId}/isUpdate")// 이거를 하면 수정 완료 버튼 active 해주기
     public ResponseEntity<?> isUpdate(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        if(userDetails.getMember()==null){
+            LoginResponseDto dto = new LoginResponseDto("로그인을 해주세요", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(dto,HttpStatus.BAD_REQUEST);
+        }
         return commentService.isUpdate(commentId, userDetails.getMember());
     }
 

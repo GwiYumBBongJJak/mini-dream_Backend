@@ -5,11 +5,15 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class GlobalResDto {
+public class UpdateCommentIdDto {
     private String msg;
+
+    private long commentId;
     private int statusCode;
-    public GlobalResDto(String msg, int statusCode) {
+
+    public UpdateCommentIdDto(String msg, long commentId, int statusCode) {
         this.msg = msg;
+        this.commentId = commentId;
         this.statusCode = statusCode;
     }
 }

@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Comment extends Timestamp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long comment_id;
+    private Long commentId;
 
     @Column
     private String comment;
@@ -34,8 +34,10 @@ public class Comment extends Timestamp {
         this.boardId = boardId;
     }
 
+
     public void update(CommentDto dto,Member member) {
-        this.comment = dto.getComment() != null ? dto.getComment() :this.comment;
+        System.out.println(dto.getComment());
+        this.comment = dto.getModifiedComment() != null ? dto.getModifiedComment() :this.comment;
         this.nickname = member.getNickname();
 
     }

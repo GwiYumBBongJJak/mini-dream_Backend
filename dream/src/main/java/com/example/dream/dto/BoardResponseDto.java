@@ -19,6 +19,12 @@ public class BoardResponseDto {
     private Long memberID;
     private Long boardId;
 
+    private Long likeCount;
+
+    private Long dislikeCount;
+
+    private Long horrorCount;
+
     List<Comment> comments;
 //
 //    private int likeCount;
@@ -29,25 +35,31 @@ public class BoardResponseDto {
 
 
 
-    public BoardResponseDto(Board board) {
+    public BoardResponseDto(Board board, ReactionsDto reactionsDto) {
         this.boardId = board.getBoardId();
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();
         this.nickname = board.getMember().getNickname();
-        this.memberID = board.getMember().getMember_id();
+        this.memberID = board.getMember().getMemberId();
+        this.likeCount = reactionsDto.getLikeCount();
+        this.dislikeCount = reactionsDto.getDislikeCount();
+        this.horrorCount = reactionsDto.getHorrorCount();
 
 //        this.likeCount = board.getLikeCount();
 //        this.dislikeCount = board.getDislikeCount();
 //        this.horrorCount = board.getHorrorCount();
         // this.comments = board.getComments();
     }
-    public BoardResponseDto(Board board, List<Comment> commentList) {
+    public BoardResponseDto(Board board, List<Comment> commentList,ReactionsDto reactionsDto) {
         this.boardId = board.getBoardId();
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();
         this.nickname = board.getMember().getNickname();
-        this.memberID = board.getMember().getMember_id();
+        this.memberID = board.getMember().getMemberId();
         this.comments = commentList;
+        this.likeCount = reactionsDto.getLikeCount();
+        this.dislikeCount = reactionsDto.getDislikeCount();
+        this.horrorCount = reactionsDto.getHorrorCount();
 //        this.likeCount = board.getLikeCount();
 //        this.dislikeCount = board.getDislikeCount();
 //        this.horrorCount = board.getHorrorCount();

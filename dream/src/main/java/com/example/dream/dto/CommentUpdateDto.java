@@ -6,11 +6,8 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class CommentDto {
-
-    private String comment;
+public class CommentUpdateDto {
     private String modifiedComment;
     private String nickname;
     private Board board;
-
 }
