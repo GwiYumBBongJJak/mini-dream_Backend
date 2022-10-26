@@ -1,7 +1,7 @@
 package com.example.dream.service;
 
 import com.example.dream.dto.CommentDto;
-import com.example.dream.dto.GlobalResDto;
+import com.example.dream.dto.LoginResponseDto;
 import com.example.dream.entity.Board;
 import com.example.dream.entity.Comment;
 import com.example.dream.entity.Member;
@@ -9,57 +9,96 @@ import com.example.dream.repository.BoardRepository;
 import com.example.dream.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CommentService {
 
-    private final BoardRepository boardRepository;
-
     private final CommentRepository commentRepository;
 
+    private final BoardRepository boardRepository;
+
     @Transactional
-    public GlobalResDto create(Long boardId, CommentDto dto, Member member) {
-        //게시글 조회및 예외 발생
-        Board board = boardRepository.findById(boardId)
-                .orElseThrow(() -> new IllegalArgumentException("댓글 생성 실패 대상 게시글이 없습니다."));
-
-        //댓글 엔티티 생성
-        Comment comment = Comment.builder()
-                .boardId(board.getBoard_id())
-                .content(dto.getContent())
-                .member(member)
-                .build();
-
-        //댓글 엔티티를 db로 저장
+    public ResponseEntity<?> createComment(CommentDto dto, Long boardId, Member member) {
+        ;
+        Board board = boardRepository.findById(boardId).orElseThrow();
+        Comment comment = new Comment(dto, member, boardId);
         commentRepository.save(comment);
-
-        return new GlobalResDto("Success Save Course", HttpStatus.OK.value());
+        return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
 
-    public GlobalResDto update(Long id, CommentDto dto) {
-        //댓글 조회 및 예외 발생
-        Comment target = commentRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("댓글 수정 실패 대상 댓글이 없습니다."));
-        //댓글 수정
-        target.patch(dto);
-        //db로 갱신
-        commentRepository.save(target);
-        //댓글 엔티티를 DTO로 변환 및 반환
-        return new GlobalResDto("Success Save Course", HttpStatus.OK.value());
+    public ResponseEntity<?> isUpdate(Long commentId, Member member) {
+        Optional<Comment> optional = commentRepository.findById(commentId);
+        Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
+        if (!comment.getNickname().equals(member.getNickname())) {
+            LoginResponseDto response = new LoginResponseDto("작성자가 다릅니다", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        } else {
+            LoginResponseDto response = new LoginResponseDto("수정이 가능한 댓글입니다", HttpStatus.OK.value());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+    }
+
+
+    @Transactional
+    public ResponseEntity<?> updateComment(CommentDto dto, Long commentId, Member member) {
+        Optional<Comment> optional = commentRepository.findById(commentId);
+        Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
+        comment.update(dto, member);
+        return new ResponseEntity<>(commentRepository.findAll(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> isDelete(Long commentId, Member member) {
+        Optional<Comment> optional = commentRepository.findById(commentId);
+        Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
+        if (!comment.getNickname().equals(member.getNickname())) {
+            LoginResponseDto response = new LoginResponseDto("작성자가 다릅니다", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        } else {
+            LoginResponseDto response = new LoginResponseDto("삭제가 가능한 댓글입니다", HttpStatus.OK.value());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
 
     }
 
-    public GlobalResDto delete(Long id) {
-        // 댓글 조회 및 예외 발생
-        Comment target = commentRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("댓글 삭제 실패 대상이 없습니다."));
-        //댓글 db삭제
-        commentRepository.delete(target);
 
-        return new GlobalResDto("Success delete Course", HttpStatus.OK.value());
-    }
+
+
+    //2중 logic. 한번 확인하는 절차?
+    @Transactional
+    public ResponseEntity<?> deleteComment(Long commentId, Member member) {
+        Optional<Comment> optional = commentRepository.findById(commentId);
+        Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
+        if (!comment.getNickname().equals(member.getNickname())) {
+            LoginResponseDto response = new LoginResponseDto("작성자가 다릅니다", HttpStatus.BAD_REQUEST.value());
+
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        } else {
+            commentRepository.deleteById(commentId);
+            LoginResponseDto response = new LoginResponseDto("삭제가 완료 되었습니다", HttpStatus.OK.value());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+
+//        Optional<Comment> optional = commentRepository.findById(commentId);
+//        Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
+//        commentRepository.deleteById(commentId);
+//        LoginResponseDto response = new LoginResponseDto("삭제가 완료 되었습니다", HttpStatus.OK.value());
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+
+        public ResponseEntity<?> getComments (Member member){
+
+            return new ResponseEntity<>(commentRepository.findAll(), HttpStatus.OK);
+
+        }
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.dream.dto;
 
+import com.example.dream.entity.Board;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentDto {
 
-    private String content;
+    private String comment;
+    private String nickname;
+    private Board board;
 
 }

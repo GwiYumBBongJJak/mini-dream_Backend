@@ -1,35 +1,46 @@
 package com.example.dream.controller;
 
 import com.example.dream.dto.CommentDto;
-import com.example.dream.dto.GlobalResDto;
 import com.example.dream.service.CommentService;
 import com.example.dream.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-@RequiredArgsConstructor
 @RestController
+@RequestMapping("/auth/comments")
+@RequiredArgsConstructor
 public class CommentController {
     private final CommentService commentService;
 
-    //댓글 작성
-    @PostMapping("/api/board/{boardId}/comment")
-    public GlobalResDto createBoard(@PathVariable Long boardId , @RequestBody CommentDto dto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        return commentService.create(boardId,dto, userDetails.getMember());
+    @PostMapping(value= "/{boardId}/create", consumes = "application/json")
+    public ResponseEntity<?> createComment(@PathVariable Long boardId , @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody CommentDto dto){
+        return commentService.createComment(dto,boardId,userDetails.getMember());
     }
 
-    //댓글 수정
-    @PatchMapping("/api/comment/{id}")
-    public GlobalResDto update(@PathVariable Long id, @RequestBody CommentDto dto) {
-        return commentService.update(id,dto);
+    @PutMapping(value ="/{commentId}/update", consumes = "application/json")
+    public ResponseEntity<?> updateComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody CommentDto dto){
+        return commentService.updateComment(dto,commentId,userDetails.getMember());
     }
 
-    //댓글 삭제
-    @DeleteMapping("/api/comment/{id}")
-    public GlobalResDto delete(@PathVariable Long id) {
-        return commentService.delete(id);
+    @GetMapping("/{commentId}/isUpdate")// 이거를 하면 수정 완료 버튼 active 해주기
+    public ResponseEntity<?> isUpdate(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return commentService.isUpdate(commentId, userDetails.getMember());
     }
-//2
 
+    @DeleteMapping("/{commentId}/delete")
+    public ResponseEntity<?> deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return commentService.deleteComment(commentId, userDetails.getMember());
+    }
+
+//    @GetMapping("/{commentId}/isDelete")// 이거를 하면 삭제 완료 버튼 active 해주기
+//    public ResponseEntity<?> isDelete(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+//        return commentService.isDelete(commentId, userDetails.getMember());
+//    }
+
+    @GetMapping
+    public ResponseEntity<?> getComments(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        return commentService.getComments(userDetails.getMember());
+    }
 }

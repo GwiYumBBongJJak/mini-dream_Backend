@@ -7,23 +7,20 @@ import com.example.dream.dto.GlobalResDto;
 import com.example.dream.service.BoardService;
 import com.example.dream.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api")
 public class BoardController {
     private final BoardService boardService;
 
     // 전체 게시글 보기
     @GetMapping("/boards")
     public BoardListResponseDto getBoards(){
+        System.out.println("겟보드 : 보드 보여주기 ");
         return boardService.getBoards();
     }
 
@@ -36,13 +33,14 @@ public class BoardController {
     }
 
     // 게시글 조회
-    @GetMapping("/auth/boards/{id}")
+    @GetMapping("/boards/{id}")
     public ResponseEntity<BoardResponseDto> getBoard(@PathVariable Long id) {
+        System.out.println("겟 보드 하나만 보여주기");
         return boardService.getBoard(id);
     }
 
     //게시글 수정
-    @PutMapping("/auth/boards/update/{id}")
+    @PutMapping("/auth/boards/modify/{id}")
     public GlobalResDto updateBoard(@PathVariable Long id, @RequestBody BoardDto requestDto) {
         return boardService.updateBoard(id, requestDto);
     }

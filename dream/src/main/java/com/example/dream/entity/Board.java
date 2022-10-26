@@ -5,7 +5,6 @@ import com.example.dream.dto.BoardDto;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -13,11 +12,10 @@ import java.util.List;
 @Setter
 @Builder
 @NoArgsConstructor
-
 public class Board extends Timestamp{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long board_id;
+    private Long boardId;
 
     @Column
     private String boardContent;
@@ -35,14 +33,20 @@ public class Board extends Timestamp{
     private Member member;
     // member 생성자?
 
-    @Column
-    @OneToMany
-    private List<Comment> comment;
+
 
     // 양방향 관계를 가급적이면 활용 안해야 한다. // why? n+1 문제가 발생 > 확인해라.
 
-    @Column
-    private Long like_count;
+
+
+//    @Column
+//    private int likeCount;
+//
+//    @Column
+//    private int dislikeCount;
+//
+//    @Column
+//    private int horrorCount;
 
 
     public void boardUpdate(BoardDto dto) {

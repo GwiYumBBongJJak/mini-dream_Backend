@@ -2,8 +2,8 @@ POST http://localhost:8080/member/register
 Content-Type: application/json
 
 {
-  "username": "testing",
-  "nickname": "adam2",
+  "username": "hihi2",
+  "nickname": "adam12",
   "password": "bin12345"
 }
 
@@ -13,19 +13,19 @@ POST http://localhost:8080/member/login
 Content-Type: application/json
 
 {
-  "username": "testing",
+  "username": "hihi2",
   "password": "bin12345"
 }
 
 ###
 
-POST http://localhost:8080/api/auth/boards/create
+POST http://localhost:8080/auth/boards/create
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2ODg1Mzk2LCJpYXQiOjE2NjY3MTI1OTZ9.nR7rb99fsLh_j6xAsQQGNh1hozF5cxfMwDKS3mUe4k8
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwiaWF0IjoxNjY2NzU2MzM4fQ.SRtxcv6pCP6BZKkg9SEYSRRwBExdAbjKHSpPgCsatpM
 
 {
-  "boardContent": "첫번째 포스트",
-  "boardTitle": "배고파"
+  "boardContent": "여덜번쨰 포스트",
+  "boardTitle": "졸려"
 }
 
 
@@ -34,26 +34,35 @@ Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2ODg1Mzk2L
 
 ###
 
-GET http://localhost:8080/api/auth/boards
+GET http://localhost:8080/boards
 Content-Type: application/json
-Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMyIsImV4cCI6MTY2Njc1NTQwMywiaWF0IjoxNjY2NzUxODAzfQ.c6ud6k1I5X-nUZ-eyHfop9mNOwF9rGKg-eA6rRqqr7w
 
 ###
 
-GET http://localhost:8080/api/auth/boards/1
+GET http://localhost:8080/boards/4
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQxNjYyLCJpYXQiOjE2NjY1MzgwNjJ9.irPr48mocrkH8KapKsnWsFek8iqy3tKu0YKWf7dfSXQ
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwiaWF0IjoxNjY2NzU2MzM4fQ.SRtxcv6pCP6BZKkg9SEYSRRwBExdAbjKHSpPgCsatpM
+
 
 ###
 
-PUT http://localhost:8080/api/auth/boards/6
+PUT http://localhost:8080/auth/boards/modify/2
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NzE5NjgyLCJpYXQiOjE2NjY3MTYwODJ9.iamLpw7poPrZ05Q3_9UoRDU99Qq8ZgD3O_DziPNjgsM
 
 {
   "content": "이것도 테스트용",
   "title": "이건 테스트용"
 }
+
+###
+
+DELETE http://localhost:8080/auth/boards/delete/7
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMyIsImV4cCI6MTY2Njc1NTQwMywiaWF0IjoxNjY2NzUxODAzfQ.c6ud6k1I5X-nUZ-eyHfop9mNOwF9rGKg-eA6rRqqr7w
+
+
 
 ###
 
@@ -70,20 +79,31 @@ Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLC
 
 ###
 
-POST http://localhost:8080/api/auth/board/comment/1
+POST http://localhost:8080/auth/comments/4/create
 Content-Type: application/json
-Access_token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM2MTU0LCJpYXQiOjE2NjYyNDk3NTR9.bgc06N_bcsPFicwxCbgUBT-kG3TJYwfLh4eTZIVhWCQ
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwiaWF0IjoxNjY2NzU2MzM4fQ.SRtxcv6pCP6BZKkg9SEYSRRwBExdAbjKHSpPgCsatpM
 
 {
-  "content": "cococooment"
+  "comment": "cococooment"
 }
+
 ###
 
-GET http://localhost:8080/api/auth/board/comment
+GET http://localhost:8080/auth/comments/1/isUpdate
 Content-Type: application/json
-Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjcxMzQ0LCJpYXQiOjE2NjYxODQ5NDR9.vLMmhoBNeSWdRaCoxqKHmDqsePSyEwhPzhy-spnuvbY
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMSIsImV4cCI6MTY2Njc1NTk3OSwiaWF0IjoxNjY2NzUyMzc5fQ.is7UDu95PBRl6dq-9cfwgYUToo0UxMS4dIwXZi_hSaE
 
 
+
+###
+
+PUT http://localhost:8080/auth/comments/1/update
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMyIsImV4cCI6MTY2NjczMTA5MiwiaWF0IjoxNjY2NzI3NDkyfQ.WTPswSsm-7OLBPnozQjZ321MJYzAqbvvRQKiSJb2CfI
+
+{
+  "comment": "hihihihii"
+}
 
 ###
 
@@ -123,9 +143,9 @@ Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjY0N
 }
 
 ###
-POST http://localhost:8080/api/auth/heart/like/1
+POST http://localhost:8080/auth/2/like
 Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM0MjYxLCJpYXQiOjE2NjYyNDc4NjF9.OyIja8YgLcPfHSSR5w12APxL1pYMdVWOHUBiKYNU9Zo
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMzMiLCJleHAiOjE2NjY3MjY4MzAsImlhdCI6MTY2NjcyMzIzMH0.vzcUPpKZgUo-Ss1MWLq_3kFrRvSs3OqjWBD4zCjFuRA
 
 
 
