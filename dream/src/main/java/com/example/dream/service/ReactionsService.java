@@ -32,9 +32,9 @@ public class ReactionsService {
         
         if (checking.isEmpty()){
             // 멤버 아이디로 조회한 리액션 결과
-            System.out.println("virgin post check");
+
             if(action.equals("LIKE")){
-                System.out.println("virgin post");
+
                 ReactionDto dto = new ReactionDto(true, false, false);
                 Reactions saveLike = new Reactions(member, board, dto);
                 reactionsRepository.save(saveLike);
@@ -58,7 +58,7 @@ public class ReactionsService {
 
             if(action.equals("LIKE")){
                 ReactionDto dto = new ReactionDto(!checkedReaction.isLiked(),checkedReaction.isDisliked(),checkedReaction.isHorrid());
-                System.out.println(dto + " when LIKE is pressed. Not virgin");
+
                 checkedReaction.update(dto,member, board);
             }
 
@@ -78,6 +78,7 @@ public class ReactionsService {
         long dislikeCount = reactionsRepository.countReactionsByBoard_BoardIdAndDislikedTrue(boardId);
         long horrorCount = reactionsRepository.countReactionsByBoard_BoardIdAndHorridTrue(boardId);
         ReactionsDto dto = ReactionsDto.builder()
+                .boardId(boardId)
                 .likeCount(likeCount)
                 .dislikeCount(dislikeCount)
                 .horrorCount(horrorCount)

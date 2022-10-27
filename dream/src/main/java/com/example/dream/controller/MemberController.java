@@ -2,7 +2,7 @@ package com.example.dream.controller;
 
 import com.example.dream.Jwt.JwtUtil;
 import com.example.dream.dto.LoginDto;
-import com.example.dream.dto.LoginResponseDto;
+import com.example.dream.dto.Response.LoginResponseDto;
 import com.example.dream.dto.MemberRequestDto;
 import com.example.dream.service.MemberService;
 import com.example.dream.service.UserDetailsImpl;

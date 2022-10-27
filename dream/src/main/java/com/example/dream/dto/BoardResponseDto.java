@@ -26,13 +26,6 @@ public class BoardResponseDto {
     private Long horrorCount;
 
     List<Comment> comments;
-//
-//    private int likeCount;
-//
-//    private int dislikeCount;
-//
-//    private int horrorCount;
-
 
 
     public BoardResponseDto(Board board, ReactionsDto reactionsDto) {

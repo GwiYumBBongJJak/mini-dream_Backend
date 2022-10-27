@@ -2,6 +2,7 @@ package com.example.dream.service;
 
 
 import com.example.dream.dto.*;
+import com.example.dream.dto.Response.GlobalResDto;
 import com.example.dream.entity.Board;
 import com.example.dream.entity.Comment;
 import com.example.dream.entity.Member;
@@ -27,11 +28,9 @@ public class BoardService {
 
 
     @Transactional
-    public GlobalResDto saveBoard(BoardDto boardRequestDto, Member member) {
+    public GlobalResDto saveBoard(BoardDetailDto boardRequestDto, Member member) {
 
         Board board = Board.builder()
-//                .username(boardRequestDto.getUsername())
-//                .nickname(boardRequestDto.getNickname())
                 .boardContent(boardRequestDto.getBoardContent())
                 .boardTitle(boardRequestDto.getBoardTitle())
                 .member(member)
@@ -45,8 +44,6 @@ public class BoardService {
     @Transactional(readOnly = true)
     public ResponseEntity<BoardResponseDto> getBoard(Long id) {
 
-    // board title , memeber nickname, like count, dislike count, horror count
-
         List<Comment> commentList = commentRepository.findCommentByBoardId(id);
         Board board = checkBoard(boardRepository, id);
 
@@ -54,16 +51,13 @@ public class BoardService {
         long dislikeCount = reactionsRepository.countReactionsByBoard_BoardIdAndDislikedTrue(id);
         long horrorCount = reactionsRepository.countReactionsByBoard_BoardIdAndHorridTrue(id);
 
-        ReactionsDto dto = new ReactionsDto(likeCount,dislikeCount,horrorCount);
-
-//        BoardResponseDto boardDto = new BoardResponseDto(board, commentList,dto);
+        ReactionsDto dto = new ReactionsDto(id,likeCount,dislikeCount,horrorCount);
 
         return ResponseEntity.ok(new BoardResponseDto(board,commentList,dto));
     }
 
     @Transactional(readOnly = true)
     public BoardListResponseDto getBoards() {
-
 
         BoardListResponseDto boardListResponseDto = new BoardListResponseDto();
         List<Board> boards = boardRepository.findAll();
@@ -72,7 +66,7 @@ public class BoardService {
             long likeCount = reactionsRepository.countReactionsByBoard_BoardIdAndLikedTrue(board.getBoardId());
             long dislikeCount = reactionsRepository.countReactionsByBoard_BoardIdAndDislikedTrue(board.getBoardId());
             long horrorCount = reactionsRepository.countReactionsByBoard_BoardIdAndHorridTrue(board.getBoardId());
-            ReactionsDto dto = new ReactionsDto(likeCount,dislikeCount,horrorCount);
+            ReactionsDto dto = new ReactionsDto(board.getBoardId(), likeCount,dislikeCount,horrorCount);
             boardListResponseDto.addBoard(new BoardResponseDto(board,dto));
 
         }
@@ -81,7 +75,7 @@ public class BoardService {
     }
 
     @Transactional
-    public GlobalResDto updateBoard(Long id, BoardDto boardRequestDto, Member member) {
+    public GlobalResDto updateBoard(Long id, BoardDetailDto boardRequestDto, Member member) {
 
         Board board = checkBoard(boardRepository, id);
 
