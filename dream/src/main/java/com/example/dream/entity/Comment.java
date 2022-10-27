@@ -17,10 +17,6 @@ public class Comment extends Timestamp {
     @Column
     private String comment;
 
-    //    @JsonIgnore
-//    @ManyToOne
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JoinColumn(name = "board_id", nullable = false)
     @Column
     private Long boardId;
 

@@ -3,6 +3,7 @@ package com.example.dream.service;
 
 import com.example.dream.Jwt.JwtUtil;
 import com.example.dream.dto.*;
+import com.example.dream.dto.Response.LoginResponseDto;
 import com.example.dream.entity.Member;
 import com.example.dream.entity.RefreshToken;
 import com.example.dream.repository.MemberRepository;
@@ -29,13 +30,27 @@ public class MemberService {
     @Transactional
     public ResponseEntity<?> signup(MemberRequestDto requestDto) {
 
+        Optional<Member> userNameCheck = memberRepository.findByUsername(requestDto.getUsername());
+        Optional<Member> nickNameCheck = memberRepository.findByNickname(requestDto.getNickname());
+        if(userNameCheck.isPresent()&& nickNameCheck.isEmpty()){
+            LoginResponseDto loginDto = new LoginResponseDto("이미 존재하는 아이디입니다",HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(loginDto,HttpStatus.OK);
+        }
+        if(nickNameCheck.isPresent() && userNameCheck.isEmpty()){
+            LoginResponseDto loginDto = new LoginResponseDto("이미 존재하는 닉네임입니다",HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(loginDto,HttpStatus.OK);
+        }
+        if(nickNameCheck.isPresent() && userNameCheck.isPresent()){
+            LoginResponseDto loginDto = new LoginResponseDto("이미 존재하는 닉네임과 아이디입니다",HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(loginDto,HttpStatus.OK);
+        }
+
+
         requestDto.setPasswordEncoder(passwordEncoder.encode(requestDto.getPassword()));
         Member member = new Member(requestDto);
-
         memberRepository.save(member);
         LoginResponseDto loginDto = new LoginResponseDto("회원가입이 완료 되었습니다", HttpStatus.OK.value());
         return new ResponseEntity<>(loginDto,HttpStatus.OK);
-
     }
 
     public ResponseEntity<?> login(LoginDto loginDto, HttpServletResponse response) {
@@ -54,8 +69,7 @@ public class MemberService {
         }
         TokenDto tokenDto = jwtUtil.createAllToken(loginDto.getUsername());
 
-        TokenNicknameDto nicknameDto = new TokenNicknameDto(tokenDto.getAccessToken(), tokenDto.getRefreshToken(), member1.getNickname(),1004);
-
+        TokenDto nicknameDto = new TokenDto(tokenDto.getAccessToken(), tokenDto.getRefreshToken(),member1.getNickname(),1004,"로그인에 성공하였습니다!" );
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByMemberUsername(loginDto.getUsername());
         if (refreshToken.isPresent()) {
             refreshTokenRepository.save(refreshToken.get().update(tokenDto.getRefreshToken()));

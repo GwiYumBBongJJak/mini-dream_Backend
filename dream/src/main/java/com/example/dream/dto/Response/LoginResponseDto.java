@@ -1,4 +1,4 @@
-package com.example.dream.dto;
+package com.example.dream.dto.Response;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

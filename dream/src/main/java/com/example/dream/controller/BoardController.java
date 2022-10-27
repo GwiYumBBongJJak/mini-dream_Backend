@@ -1,9 +1,9 @@
 package com.example.dream.controller;
 
-import com.example.dream.dto.BoardDto;
+import com.example.dream.dto.BoardDetailDto;
 import com.example.dream.dto.BoardListResponseDto;
 import com.example.dream.dto.BoardResponseDto;
-import com.example.dream.dto.GlobalResDto;
+import com.example.dream.dto.Response.GlobalResDto;
 import com.example.dream.service.BoardService;
 import com.example.dream.service.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +20,13 @@ public class BoardController {
     // 전체 게시글 보기
     @GetMapping("/boards")
     public BoardListResponseDto getBoards() {
-        System.out.println("겟보드 : 보드 보여주기 ");
         return boardService.getBoards();
     }
 
     // 게시글 등록
     // @AuthenticationPrincipal 활용 장점 : Jwt 필터에서 검증된걸 가져온다, 기존 내 방식은 2중 검증이다 어떻게 보면.
     @PostMapping("/auth/boards/create")
-    public GlobalResDto createBoard(@RequestBody BoardDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public GlobalResDto createBoard(@RequestBody BoardDetailDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         System.out.println(userDetails);
         return boardService.saveBoard(requestDto, userDetails.getMember());
     }
@@ -41,7 +40,7 @@ public class BoardController {
 
     //게시글 수정
     @PutMapping("/auth/boards/modify/{id}")
-    public GlobalResDto updateBoard(@PathVariable Long id, @RequestBody BoardDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public GlobalResDto updateBoard(@PathVariable Long id, @RequestBody BoardDetailDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return boardService.updateBoard(id, requestDto, userDetails.getMember());
     }
 

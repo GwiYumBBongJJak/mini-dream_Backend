@@ -8,12 +8,15 @@ import lombok.Setter;
 @Setter
 public class ReactionsDto {
 
+    private long boardId;
     private long likeCount;
     private long dislikeCount;
     private long horrorCount;
 
     @Builder
-    public ReactionsDto(long likeCount, long dislikeCount, long horrorCount) {
+    public ReactionsDto(long boardId, long likeCount, long dislikeCount, long horrorCount) {
+
+        this.boardId = boardId;
         this.likeCount = likeCount;
         this.dislikeCount = dislikeCount;
         this.horrorCount = horrorCount;

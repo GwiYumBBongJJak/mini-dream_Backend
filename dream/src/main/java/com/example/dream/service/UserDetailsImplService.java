@@ -15,18 +15,10 @@ public class UserDetailsImplService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
 
-//
-//    public UserDetailsImplService(MemberRepository memberRepository){
-//        this.memberRepository = memberRepository;
-//    }
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByUsername(username).orElseThrow(
-                ()-> new RuntimeException("member not available"));
-//        UserDetailsImpl userDetails = new UserDetailsImpl();
-//        userDetails.setMember(member);
+                () -> new RuntimeException("member not available"));
         return new UserDetailsImpl(member);
     }
 }

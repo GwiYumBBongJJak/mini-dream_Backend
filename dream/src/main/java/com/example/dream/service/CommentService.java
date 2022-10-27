@@ -1,7 +1,7 @@
 package com.example.dream.service;
 
 import com.example.dream.dto.CommentDto;
-import com.example.dream.dto.LoginResponseDto;
+import com.example.dream.dto.Response.LoginResponseDto;
 import com.example.dream.dto.UpdateCommentIdDto;
 import com.example.dream.entity.Board;
 import com.example.dream.entity.Comment;
@@ -26,7 +26,7 @@ public class CommentService {
 
     @Transactional
     public ResponseEntity<?> createComment(CommentDto dto, Long boardId, Member member) {
-        ;
+
         Board board = boardRepository.findById(boardId).orElseThrow();
         Comment comment = new Comment(dto, member, boardId);
         commentRepository.save(comment);
@@ -39,7 +39,8 @@ public class CommentService {
         if (!comment.getNickname().equals(member.getNickname())) {
             LoginResponseDto response = new LoginResponseDto("작성자가 다릅니다", HttpStatus.BAD_REQUEST.value());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
+        }
+        else {
             UpdateCommentIdDto response = new UpdateCommentIdDto("수정이 가능한 댓글입니다",commentId, HttpStatus.OK.value());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
@@ -52,8 +53,6 @@ public class CommentService {
         System.out.println(optional);
         Comment comment = optional.orElseThrow(() -> new IllegalArgumentException("no"));
         comment.update(dto, member);
-//        return new ResponseEntity<>(commentRepository.findAll(), HttpStatus.OK);
-
         Long boardId = comment.getBoardId();
         return new ResponseEntity<>(commentRepository.findCommentByBoardId(boardId), HttpStatus.OK);
     }

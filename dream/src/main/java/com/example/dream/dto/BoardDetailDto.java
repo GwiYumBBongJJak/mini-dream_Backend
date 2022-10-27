@@ -20,25 +20,12 @@ public class BoardDetailDto {
 
     List<Comment> boardDetailDto = new LinkedList<>();
 
-
-//    private int likeCount;
-//
-//    private int dislikeCount;
-//
-//    private int horrorCount;
-
-
-
     public BoardDetailDto(Board board) {
         this.boardId = board.getBoardId();
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();
         this.nickname = board.getMember().getNickname();
         this.memberID = board.getMember().getMemberId();
-//        this.likeCount = board.getLikeCount();
-//        this.dislikeCount = board.getDislikeCount();
-//        this.horrorCount = board.getHorrorCount();
-        // this.comments = board.getComments();
     }
 
 }

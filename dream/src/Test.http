@@ -2,8 +2,8 @@ POST http://localhost:8080/member/register
 Content-Type: application/json
 
 {
-  "username": "hihi4",
-  "nickname": "adam12",
+  "username": "adamparker",
+  "nickname": "adampark",
   "password": "bin12345"
 }
 
@@ -13,7 +13,7 @@ POST http://localhost:8080/member/login
 Content-Type: application/json
 
 {
-  "username": "hihi4",
+  "username": "adamparker",
   "password": "bin12345"
 }
 
@@ -21,15 +21,12 @@ Content-Type: application/json
 
 POST http://localhost:8080/auth/boards/create
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwiaWF0IjoxNjY2NzU2MzM4fQ.SRtxcv6pCP6BZKkg9SEYSRRwBExdAbjKHSpPgCsatpM
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU0Mzg2LCJpYXQiOjE2NjY4NTQzODZ9.ANWfx11O1JL8lfWGZ52L9mr4ptTRvlrf4WxjXJBL8S8
 
 {
-  "boardContent": "여덜번쨰 포스트",
-  "boardTitle": "졸려"
+  "boardContent": "어른이 되서 깨어납니다",
+  "boardTitle": "어제는 어릴때로 돌아가서"
 }
-
-
-
 
 
 ###
@@ -37,20 +34,12 @@ Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc1OTkzOCwia
 GET http://localhost:8080/boards
 Content-Type: application/json
 
-###
-
-POST http://localhost:8080/auth/8/reaction/like
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY2Njc3MzI5NiwiaWF0IjoxNjY2NzY5Njk2fQ.rBQhjH-hjbD3urIHpvYP3BCNE-brniQaKT4WEFvUZGc
 
 ###
 
 POST http://localhost:8080/auth/4/DISLIKE/
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY3MDM3NDIwMiwiaWF0IjoxNjY2Nzc0MjAyfQ.B_05vE7vhFPnq3j3CP7oMfAP-Wqyumw_k06CD4GmVCw
-
-
-
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFyayIsImV4cCI6MTY3MDQwMjk4OSwiaWF0IjoxNjY2ODAyOTg5fQ.re57NsDtpw5r60IhYNDV5jJkHlgD6thomEA6enYkJ_U
 
 ###
 
@@ -60,59 +49,38 @@ Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4OTUyOSwia
 
 ###
 
-PUT http://localhost:8080/auth/boards/modify/2
+PUT http://localhost:8080/auth/boards/modify/4
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NzE5NjgyLCJpYXQiOjE2NjY3MTYwODJ9.iamLpw7poPrZ05Q3_9UoRDU99Qq8ZgD3O_DziPNjgsM
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU0Mzg2LCJpYXQiOjE2NjY4NTQzODZ9.ANWfx11O1JL8lfWGZ52L9mr4ptTRvlrf4WxjXJBL8S8
 
 {
-  "content": "이것도 테스트용",
-  "title": "이건 테스트용"
+  "boardTitle": "뽈낑뽈깡 스러운꿈이였바봅니다..."
 }
 
 ###
 
-DELETE http://localhost:8080/auth/boards/delete/7
+DELETE http://localhost:8080/auth/boards/delete/4
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nMyIsImV4cCI6MTY2Njc1NTQwMywiaWF0IjoxNjY2NzUxODAzfQ.c6ud6k1I5X-nUZ-eyHfop9mNOwF9rGKg-eA6rRqqr7w
-
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU0Mzg2LCJpYXQiOjE2NjY4NTQzODZ9.ANWfx11O1JL8lfWGZ52L9mr4ptTRvlrf4WxjXJBL8S8
 
 
 ###
 
-GET http://localhost:8080/api/member/id/test22ing
+
+POST http://localhost:8080/auth/comments/5/create
 Content-Type: application/json
-
-
-###
-
-DELETE http://localhost:8080/api/auth/boards/4
-Content-Type: application/json
-Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0aW5nIiwiZXhwIjoxNjY2NTQ1OTIwLCJpYXQiOjE2NjY1NDIzMjB9.st236wqx5nVjcXQAqF8s_miggDPEwAKHPK1hdIH8mqQ
-
-
-###
-
-POST http://localhost:8080/auth/comments/17/create
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4OTUyOSwiaWF0IjoxNjY2Nzg5NTI5fQ.gA1nD0_QRav-K0MwzqenZ3OxJTE7abOCxCoH53DWOBA
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU0Mzg2LCJpYXQiOjE2NjY4NTQzODZ9.ANWfx11O1JL8lfWGZ52L9mr4ptTRvlrf4WxjXJBL8S8
 
 {
-  "comment": "cococooment"
+  "comment": "오...귀한 뽈깡뽈낑을...축하드립니다 뽈깡!"
 }
 
 ###
 
-GET http://localhost:8080/auth/comments/1/isUpdate
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMSIsImV4cCI6MTY2Njc1NTk3OSwiaWF0IjoxNjY2NzUyMzc5fQ.is7UDu95PBRl6dq-9cfwgYUToo0UxMS4dIwXZi_hSaE
-
-
-
-###
 
 PUT http://localhost:8080/auth/comments/1/update
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY3MDM3NzgxMSwiaWF0IjoxNjY2Nzc3ODExfQ.FhDLcWpCegsCJTJL5igLrL3qmznE0gUTGJKnXHSWhg0
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU0Mzg2LCJpYXQiOjE2NjY4NTQzODZ9.ANWfx11O1JL8lfWGZ52L9mr4ptTRvlrf4WxjXJBL8S8
 
 {
   "modifiedComment": "hihihihii"
@@ -121,53 +89,22 @@ Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpMiIsImV4cCI6MTY3MDM3NzgxMSwi
 ###
 
 
-GET http://localhost:8080/api/issue/token
-Accept: application/json
-Refresh_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW4zQGdtYWlsLmNvbSIsImV4cCI6MTY2NjEwMTQzNSwiaWF0IjoxNjY2MDE1MDM1fQ.qoilL1J0v22nDYG7kN-aD665EHUWlIt-nL3PwbUPT-A
-
-###
-POST http://localhost:8080/api/member
+DELETE http://localhost:8080/auth/boards/delete/5
 Content-Type: application/json
-
-{
-  "username": "wonbin@mail.com",
-  "password": "bin1234"
-}
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU0Mzg2LCJpYXQiOjE2NjY4NTQzODZ9.ANWfx11O1JL8lfWGZ52L9mr4ptTRvlrf4WxjXJBL8S8
 
 ###
 
-GET http://localhost:8080/api/auth/boards
+POST http://localhost:8080/auth/2/DISLIKE
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjQ2NTkyLCJpYXQiOjE2NjYxNjAxOTJ9.OnVZUmzEtl_MyIg7hgh-WRLeFkaZZdv5sGE8tKmWEEM
-
-###
-
-DELETE http://localhost:8080/api/auth/boards/delete/1
-Content-Type: application/json
-Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MTg3Mjk4LCJpYXQiOjE2NjYxMDA4OTh9._sVp2TPHOXuBu57FcbKbz-KhUw9A6YjNsI4N_4vR_tg
-###
-
-PUT http://localhost:8080/api/auth/boards/update/2
-Content-Type: application/json
-Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjY0NDM0LCJpYXQiOjE2NjYxNzgwMzR9.HDTdREpm8gK4DHnu0Db44E-3WQ620YuvAQ8rZWiqXq4
-
-{
-  "title": "zzzz Title"
-}
-
-###
-POST http://localhost:8080/auth/11/DISLIKE/
-Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4NzY4MSwiaWF0IjoxNjY2Nzg3NjgxfQ.fZ46RtXo6Edj2_h28C7FkExB4qiZpq2pJkSforKy9U0
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU4MjE3LCJpYXQiOjE2NjY4NTgyMTd9.V_72QhyuSPxcf-uqFOKErm85SAE1QNxM3IX9R1iKxtA
 
 
 ###
-POST http://localhost:8080/auth/11/LIKE/
+POST http://localhost:8080/auth/2/LIKE
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4NzY4MSwiaWF0IjoxNjY2Nzg3NjgxfQ.fZ46RtXo6Edj2_h28C7FkExB4qiZpq2pJkSforKy9U0
-
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU4MjE3LCJpYXQiOjE2NjY4NTgyMTd9.V_72QhyuSPxcf-uqFOKErm85SAE1QNxM3IX9R1iKxtA
 ###
-POST http://localhost:8080/auth/11/HORROR/
+POST http://localhost:8080/auth/2/HORROR
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaWhpNCIsImV4cCI6MTY3MDM4NzY4MSwiaWF0IjoxNjY2Nzg3NjgxfQ.fZ46RtXo6Edj2_h28C7FkExB4qiZpq2pJkSforKy9U0
-
+Authorization:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtcGFya2VyIiwiZXhwIjoxNjcwNDU4MjE3LCJpYXQiOjE2NjY4NTgyMTd9.V_72QhyuSPxcf-uqFOKErm85SAE1QNxM3IX9R1iKxtA

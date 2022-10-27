@@ -66,12 +66,4 @@ public class Reactions {
     }
 
 
-//    public void updateReactions(ReactionDto dto){
-//        this.member = dto.get;
-//        this.board = board;
-//        this.liked = dto.isLiked() != this.liked ? dto.isLiked() : this.liked;
-//        this.disliked = dto.isDisliked() != this.disliked ? dto.isDisliked() : this.liked;
-//        this.horrid = dto.isHorrid() != this.horrid ? dto.isHorrid() : this.horrid;
-//    }
-
 }
